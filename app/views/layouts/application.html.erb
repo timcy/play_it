@@ -7,6 +7,13 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<%unless current_user.nil?%>
+<%if current_user.admin?%>
+<%=render "/layouts/admin_header"%>
+<%else%>
+<%=render "/layouts/player_header"%>
+<%end%>
+<%end%>
 
 <%= yield %>
 
