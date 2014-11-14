@@ -5,7 +5,6 @@
 <%=f.text_field :last_name,:required=>true%><br/>
 <%=f.label :age%>
 <%=f.text_field :age,:required=>true%><br/>
-<%= f.label :sports %>
 <%=f.fields_for :user do |u|%>
 <%=u.label :email%>
 <%=u.email_field :email%>
@@ -14,6 +13,7 @@
 <%=u.label :password_confirmation%>
 <%=u.password_field :password_confirmation%>
 <%end%>
+<%= f.label :sports %>
 <%= select_tag("sports[]", options_for_select(@sports.collect { |ff| [ff.name, ff.id] }, @player.sports.collect { |fs| fs }),{:multiple=>true, :id => "player_sports"}) %>
 <%=f.submit "Create Player"%>
 

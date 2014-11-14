@@ -3,6 +3,11 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+   belongs_to :player 
+   before_save :generate_token
 
-   belongs_to :player     
+   def generate_token
+   	 self.access_token = SecureRandom.hex
+   end     
+
 end
