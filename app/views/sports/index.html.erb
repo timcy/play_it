@@ -1,0 +1,22 @@
+<%unless @sports.empty?%>
+<table>
+	<tr>
+		<td>Name</td>
+		<td>Type</td>
+	</tr>
+	<tbody>
+	<%@sports.each do |sport|%>
+	<tr>
+		<td><%=sport.name%></td>
+		<td><%=sport.type%></td>
+	</tr>
+
+	<%end%>	
+	</tbody>>
+	
+</table>
+<%else%>
+<b>Still,no records available</b>
+<%end%>
+
+<%=link_to "add new sport", new_sport_path%>
