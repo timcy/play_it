@@ -1,28 +1,8 @@
-== README
+1. To create new User using API
+	curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d ' {"user":{"email":"email@email.com","password":"password","password_confirmation":"password"}}'  http://localhost:3000/api/v1/users
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+2. Login Using API
+   curl -X POST -H "Content-type: application/json" -d '{"email":"admin@gmail.com","password":"password"}' localhost:3000/api/v1/sessions
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+3. To create new Player
+	curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"player":{"first_name":"ffffff","last_name":"lllll","age":"22","user_attributes":{"email":"eee@eee.com","password":"password","password_confirmation":"password"}},"sports":["1","2"]}' http://localhost:3000/api/v1/players
