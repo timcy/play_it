@@ -1,0 +1,12 @@
+<%=form_for(@player) do |f|%>
+<%=f.label :first_name%>
+<%=f.text_field :first_name,:required=>true%><br/>
+<%=f.label :last_name%>
+<%=f.text_field :last_name,:required=>true%><br/>
+<%=f.label :age%>
+<%=f.text_field :age,:required=>true%><br/>
+<%= f.label :sports %>
+<%= select_tag("sports[]", options_for_select(@sports.collect { |ff| [ff.name, ff.id] }, @player.sports.collect { |fs| fs }),{:multiple=>true, :id => "player_sports"}) %>
+<%=f.submit "Update Player"%>
+
+<%end%>

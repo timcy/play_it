@@ -1,3 +1,7 @@
+
+<%unless flash[:notice].blank?%>
+<%=flash[:notice]%>
+<%end%>
 <%unless @players.empty?%>
 <table>
 	<tr>
@@ -13,6 +17,9 @@
 		<td><%=player.last_name%></td>
 		<td><%=player.age%></td>
 		<td><%=player.sports.map do |m| m.name end%></td>
+		<br/>
+		<td><%=link_to "Edit", edit_player_path(player)%></td>
+		<td><%=link_to "Delete", player_path(player),method: :Delete%></td>
 	</tr>
 
 	<%end%>	

@@ -13,6 +13,7 @@ Rails.application.routes.draw do
    end
    root to: "home#index"
    get 'profile', to: 'home#profile'
+   get 'my_sports', to: 'players#my_sports'
    resources :players
    resources :sports
    

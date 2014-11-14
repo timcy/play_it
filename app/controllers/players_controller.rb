@@ -1,5 +1,5 @@
 class PlayersController < ApplicationController
-
+	before_filter :login_required
 	def index
 		@players=Player.all
 	end
@@ -22,10 +22,33 @@ class PlayersController < ApplicationController
 		end
 	end
 	def edit
+		@player=Player.find params[:id]
+		@sports=Sport.all		
 	end
 	def update
+		@player=Player.find params[:id]
+		puts "before updating the sports are#{@player.sports}"
+		@player.sports << Sport.find(params[:sports]) unless params[:sports].empty?
+		puts "after settingthe sports rge#{@player.sports}"
+		if @player.update_attributes(player_params)
+		flash[:notice]="The record was successfully updated."
+	else
+		puts "i am in update error"
+		end
+       redirect_to players_path
+
 	end
-	def delete
+	def destroy
+		@player=Player.find params[:id]
+		if @player.delete
+		   flash[:notice]="The record was successfully deleted."
+		   redirect_to players_path
+		end
+	end
+
+	def my_sports
+		@sports=current_user.player.sports
+
 	end
 
 private

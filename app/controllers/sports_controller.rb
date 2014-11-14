@@ -1,4 +1,6 @@
 class SportsController < ApplicationController
+	before_filter :login_required
+
 	def index
 		@sports=Sport.all
 	end
@@ -6,7 +8,7 @@ class SportsController < ApplicationController
 		@sport=Sport.new
 	end
 	def show
-		@player=Sport.find params[:id]
+		@sport=Sport.find params[:id]
 	end
 
 	def create
@@ -18,10 +20,23 @@ class SportsController < ApplicationController
 		end
 	end
 	def edit
+		@sport=Sport.find params[:id]
+		render "new"
 	end
 	def update
+		@sport=Sport.find params[:id]
+		if @sport.update_attributes(sport_params)
+		flash[:notice]="The record was successfully updated"
+		end
+       redirect_to sports_path
+
 	end
-	def delete
+	def destroy
+		@sport=Sport.find params[:id]
+		if @sport.delete
+		   flash[:notice]="The record is deleted successfully"
+		   redirect_to sports_path
+		end
 	end
 	private
 

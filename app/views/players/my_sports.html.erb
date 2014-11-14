@@ -1,7 +1,4 @@
 
-<%unless flash[:notice].blank?%>
-<%=flash[:notice]%>
-<%end%>
 <%unless @sports.empty?%>
 <table>
 	<tr>
@@ -14,13 +11,9 @@
 		<td><%=sport.name%></td>
 		<td><%=sport.sport_type%></td>
 		<br/>
-		<td><%=link_to "Edit", edit_sport_path(sport)%></td>
-		<td><%=link_to "Delete", sport_path(sport),method: :Delete%></td>
 	</tr>
-
 	<%end%>	
-	</tbody>
-	
+	</tbody>	
 </table>
 <%else%>
 <b>Still,no records available</b>
