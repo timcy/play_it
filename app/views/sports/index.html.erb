@@ -8,15 +8,14 @@
 	<%@sports.each do |sport|%>
 	<tr>
 		<td><%=sport.name%></td>
-		<td><%=sport.type%></td>
+		<td><%=sport.sport_type%></td>
 	</tr>
 
 	<%end%>	
-	</tbody>>
+	</tbody>
 	
 </table>
 <%else%>
 <b>Still,no records available</b>
 <%end%>
 
-<%=link_to "add new sport", new_sport_path%>

@@ -1,1 +1,16 @@
-_admin_header.html.erb
+<tr>
+<td><%=link_to "Create Sport",new_sport_path%></td>
+<td></td>
+<td><%=link_to "Create Player",new_player_path%></td>
+</tr>
+<tr>
+<td><%=link_to "List Sports",sports_path%></td>
+<td></td>
+<td><%=link_to "List Players",players_path%></td>
+</tr>
+<% if user_signed_in? %>
+  <li>
+  <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
+  </li>
+  
+<% end %>

@@ -10,11 +10,9 @@ class SportsController < ApplicationController
 	end
 
 	def create
-		puts sport_params
-		
 		@sport=Sport.new(sport_params)
 		if @sport.save
-			redirect_to sport_path(@sport)
+			redirect_to sports_path
 		else
 			redirect_to new_sport_path
 		end
@@ -29,6 +27,6 @@ class SportsController < ApplicationController
 
 # Never trust parameters from the scary internet, only allow the white list through.
 def sport_params
-  params.require(:sport).permit(:name,:type,:player_id)
+  params.require(:sport).permit(:name,:sport_type,:player_id)
 end
 end
