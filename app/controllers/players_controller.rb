@@ -13,6 +13,9 @@ class PlayersController < ApplicationController
 	end
 
 	def create
+		puts  "the params are #{params}"
+		render json:{:message=>params}
+		return
 		@player=Player.new player_params
 		@player.sports << Sport.find(params[:sports]) unless params[:sports].empty?
 		if @player.save

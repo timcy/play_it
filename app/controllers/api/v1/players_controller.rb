@@ -6,6 +6,17 @@ class Api::V1::PlayersController < Api::V1::BaseController
 	end
 
 	def create
-		
+		@player=Player.new player_params
+		@player.sports << Sport.find(params[:sports]) unless params[:sports].empty?
+		if @player.save
+			render json:{:status=> true,:message=>"Player created successfully"}
+		else
+			render json:{:status=> false,:errors=>@player.errors.full_messages}
+		end
 	end
+
+	private
+	def player_params
+		params.require(:player).permit!
+	end 
 end
