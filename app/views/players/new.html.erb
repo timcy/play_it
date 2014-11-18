@@ -1,20 +1,13 @@
-<%=form_for(@player) do |f|%>
-<%=f.label :first_name%>
-<%=f.text_field :first_name,:required=>true%><br/>
-<%=f.label :last_name%>
-<%=f.text_field :last_name,:required=>true%><br/>
-<%=f.label :age%>
-<%=f.text_field :age,:required=>true%><br/>
-<%=f.fields_for :user do |u|%>
-<%=u.label :email%>
-<%=u.email_field :email%>
-<%=u.label :password%>
-<%=u.password_field :password%>
-<%=u.label :password_confirmation%>
-<%=u.password_field :password_confirmation%>
+<%=simple_form_for(@player) do |f|%>
+<%=f.input :first_name,:required=>true%>
+<%=f.input :last_name,:required=>true%><br/>
+<%=f.input :age,:required=>true%><br/>
+<%=f.simple_fields_for :user do |u|%>
+<%=u.input :email,placeholder: 'user@domain.com'%>
+<%=u.input :password,hint: 'No special characters.'%>
+<%=u.input :password_confirmation,hint: 'Same as password.'%>
 <%end%>
 <%= f.label :sports %>
 <%= select_tag("sports[]", options_for_select(@sports.collect { |ff| [ff.name, ff.id] }, @player.sports.collect { |fs| fs }),{:multiple=>true, :id => "player_sports"}) %>
 <%=f.submit "Create Player"%>
-
 <%end%>

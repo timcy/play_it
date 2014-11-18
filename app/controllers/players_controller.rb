@@ -14,7 +14,7 @@ class PlayersController < ApplicationController
 
 	def create
 		@player=Player.new player_params
-		@player.sports << Sport.find(params[:sports]) unless params[:sports].empty?
+		@player.sports << Sport.find(params[:sports]) unless params[:sports].blank?
 		if @player.save
 			redirect_to players_path
 		else
@@ -40,7 +40,7 @@ class PlayersController < ApplicationController
 	end
 	def destroy
 		@player=Player.find params[:id]
-		if @player.delete
+		if @player.destroy
 		   flash[:notice]="The record was successfully deleted."
 		   redirect_to players_path
 		end

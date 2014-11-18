@@ -11,10 +11,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141113130727) do
+ActiveRecord::Schema.define(version: 20141118045416) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "ahoy_messages", force: true do |t|
+    t.string   "token"
+    t.text     "to"
+    t.integer  "user_id"
+    t.string   "user_type"
+    t.string   "mailer"
+    t.text     "subject"
+    t.text     "content"
+    t.datetime "sent_at"
+    t.datetime "opened_at"
+    t.datetime "clicked_at"
+  end
+
+  add_index "ahoy_messages", ["token"], name: "index_ahoy_messages_on_token", using: :btree
+  add_index "ahoy_messages", ["user_id", "user_type"], name: "index_ahoy_messages_on_user_id_and_user_type", using: :btree
+
+  create_table "identities", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
 
   create_table "players", force: true do |t|
     t.string   "first_name"
@@ -23,6 +49,7 @@ ActiveRecord::Schema.define(version: 20141113130727) do
     t.integer  "age"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "custom_field"
   end
 
   create_table "sports", force: true do |t|
@@ -49,6 +76,8 @@ ActiveRecord::Schema.define(version: 20141113130727) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "access_token"
+    t.string   "provider"
+    t.string   "uid"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
