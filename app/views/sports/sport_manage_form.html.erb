@@ -1,0 +1,29 @@
+
+<%=flash[:notice] unless flash[:notice].nil?%>
+
+<table>
+	<thead>
+		<tr>
+			<td>Fields</td>
+		</tr>
+	</thead>
+	<tbody>
+	<%@sport_fields.each do |field|%>
+	<tr>
+		<td>
+			<%=field%>
+		</td>
+	</tr>
+
+	<%end%>	
+	</tbody>
+
+</table>
+<%=simple_form_for :field do |f|%>
+<%=f.input :name%>
+<%=f.input :type%>
+<%=f.submit%>
+
+
+<%end%>
+

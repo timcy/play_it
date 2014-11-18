@@ -25,8 +25,20 @@ Rails.application.routes.draw do
    root to: "home#index"
    get 'profile', to: 'home#profile'
    get 'my_sports', to: 'players#my_sports'
-   resources :players
-   resources :sports
+   resources :players do
+    collection do
+      get :player_manage_form
+      post :player_manage_form
+    end
+
+   end
+   resources :sports do
+    collection do
+      get :sport_manage_form
+      post :sport_manage_form
+    end
+
+   end
    
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

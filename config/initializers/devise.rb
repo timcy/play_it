@@ -13,10 +13,10 @@ Devise.setup do |config|
   # with default "from" parameter.
   config.mailer_sender = 'please-change-me-at-config-initializers-devise@example.com'
   # config.omniauth :facebook, "320598151398214", "a0ea4f9336c8d59d62408b77a3642f80"
-  config.omniauth :twitter, "KEY", "SECRET"
+  config.omniauth :twitter, "aQ4NhiSpgtSpkksc2ANtQ", "lW9iNhMG2GnUOgSckGmM5TKsIgpd6XYg1fcyNP4"
   config.omniauth :linked_in, "KEY", "SECRET"
-  config.omniauth :facebook, "320598151398214", "a0ea4f9336c8d59d62408b77a3642f80",
-  :client_options => {:ssl => {:ca_path => '/etc/ssl/certs'}}
+  config.omniauth :google_oauth2, "956447940014-d8hn88p5u4r1aud4cqqpe2m10j9ojb0i.apps.googleusercontent.com", "ZeAvnZxpZ5KKKAN1Uea21Hhd",redirect_uri: "http://localhost:3000/users/auth/google_oauth2/callback",access_type: "offline", approval_prompt: "" 
+  config.omniauth :facebook, "320598151398214", "a0ea4f9336c8d59d62408b77a3642f80"
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 

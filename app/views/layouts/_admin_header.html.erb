@@ -5,8 +5,11 @@
 </tr>
 <tr>
 <td><%=link_to "List Sports",sports_path%></td>
+<td><%=link_to "Manage sport form",sport_manage_form_sports_path%></td>
 <td></td>
 <td><%=link_to "List Players",players_path%></td>
+<td><%=link_to "Manage player form",player_manage_form_players_path%></td>
+
 </tr>
 <% if user_signed_in? %>
   <li>

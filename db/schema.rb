@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20141118045416) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "custom_field"
+    t.string   "code"
   end
 
   create_table "sports", force: true do |t|
@@ -58,6 +59,15 @@ ActiveRecord::Schema.define(version: 20141118045416) do
     t.integer  "player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "test"
+    t.string   "demo"
+    t.string   "adddsdsd"
+    t.string   "pardeep"
+    t.string   "sunil"
+    t.string   "netsol"
+    t.string   "trigma"
+    t.string   "gaurav"
+    t.string   "schema_test"
   end
 
   create_table "users", force: true do |t|

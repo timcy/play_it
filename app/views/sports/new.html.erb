@@ -1,6 +1,7 @@
 <%=simple_form_for @sport do |f|%>
-<%=f.input :name,:required=>true%>
-<%=f.input :sport_type,:required=>true%>
+<%@fields.each do |field|%>
+<%=f.input "#{field}",:required=>true%>
+<%end%>
 <%=f.submit "Create Sport"%>
 
 <%end%>

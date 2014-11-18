@@ -7,6 +7,11 @@ class PlayersController < ApplicationController
 		@player=Player.new
 		@sports=Sport.all
 		@player.build_user
+		Player.reset_column_information
+		Player.column_names.delete("created_at")
+		Player.column_names.delete("id")
+		Player.column_names.delete("updated_at")
+		@fields=Player.column_names
 	end
 	def show
 		@player=Player.find params[:id]
@@ -48,7 +53,20 @@ class PlayersController < ApplicationController
 
 	def my_sports
 		@sports=current_user.player.sports
+	end
 
+	def player_manage_form
+		@player_fields=Player.column_names
+		if request.post?
+			require 'rake'
+			name=params[:field][:name]
+			type=params[:field][:type]
+			ActiveRecord::Migration.add_column(Player, name, type)
+			Player.reset_column_information
+			@player_fields=Player.column_names
+			%x[rake db:schema:dump]			
+			flash[:notice]="The field added successfully"
+		end
 	end
 
 private

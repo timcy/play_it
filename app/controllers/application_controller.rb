@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   def login_required
   	redirect_to root_path if current_user.nil?
-
   end
+
+  def admin_required  
+  redirect_to root_path unless current_user.admin
+  end
+  
 end

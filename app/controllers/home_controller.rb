@@ -9,6 +9,6 @@ class HomeController < ApplicationController
 	end
 
 	def profile
-		puts "i am in profile"
+		@warn=params[:warning]
 	end
 end
