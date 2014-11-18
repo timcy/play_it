@@ -9,6 +9,8 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'devise'
 gem 'pg'
+# gibbon is used for mailchimp integration for bulk messaging
+gem 'gibbon'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets

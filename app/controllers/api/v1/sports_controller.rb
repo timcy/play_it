@@ -1,7 +1,6 @@
 class Api::V1::SportsController < Api::V1::BaseController
 
 	def index
-		puts "the header#{request.headers['token']}"
 		@sports = Sport.all
 		render json:{:status=> true,:sports=>@sports}
 	end

@@ -6,3 +6,13 @@
 
 3. To create new Player
 	curl -v -H "Accept: application/json" -H "Content-type: application/json" -X POST -d '{"player":{"first_name":"ffffff","last_name":"lllll","age":"22","user_attributes":{"email":"eee@eee.com","password":"password","password_confirmation":"password"}},"sports":["1","2"]}' http://localhost:3000/api/v1/players
+
+
+4. To update Player
+	curl -X PUT -H "Content-type: application/json" -H "token:<auth_token>" -d '{"player":{"first_name":"firstname","last_name":"lastname","age":"33"},"sports":["1","2"]}' http://localhost:3000/api/v1/players/4
+
+5. Get All Players
+	curl -X GET -H "Content-type: application/json" http://localhost:3000/api/v1/players
+
+6. Destroy a player recored.
+	curl -X DELETE     http://localhost:3000/api/v1/players/<id>

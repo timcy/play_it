@@ -14,8 +14,11 @@ class PlayersController < ApplicationController
 
 	def create
 		@player=Player.new player_params
-		@player.sports << Sport.find(params[:sports]) unless params[:sports].empty?
+		@player.sports << Sport.find(params[:sports]) unless params[:sports].nil?
 		if @player.save
+			gb = Gibbon::API.new
+			list = gb.lists.list({:filters => {:list_name => "NetSolutions"}})
+			gb.lists.subscribe({:id => list["data"].first["id"], :email => {:email => params[:player][:user_attributes][:email]}, :merge_vars => {:FNAME => params[:player][:first_name], :LNAME => params[:player][:last_name]}, :double_optin => false})
 			redirect_to players_path
 		else
 			redirect_to new_player_path
@@ -40,7 +43,7 @@ class PlayersController < ApplicationController
 	end
 	def destroy
 		@player=Player.find params[:id]
-		if @player.delete
+		if @player.destroy
 		   flash[:notice]="The record was successfully deleted."
 		   redirect_to players_path
 		end

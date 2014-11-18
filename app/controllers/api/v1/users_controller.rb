@@ -5,7 +5,7 @@ class Api::V1::UsersController < Api::V1::BaseController
 		if user.valid?
 			render json:{:status => true,:message => "Signup Successfull"}
 		else
-			render json:{:status => false, :status_code=>3001,:message => user.errors.full_messages}	
+			render json:{:status => false,:message => user.errors.full_messages}	
 		end
 	end
 
