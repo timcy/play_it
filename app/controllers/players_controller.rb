@@ -61,10 +61,10 @@ class PlayersController < ApplicationController
 			require 'rake'
 			name=params[:field][:name]
 			type=params[:field][:type]
-			ActiveRecord::Migration.add_column(Player, name, type)
+			`rails g migration add_#{name}_to_players #{name}:#{type}`
+			`rake db:migrate`			
 			Player.reset_column_information
 			@player_fields=Player.column_names
-			%x[rake db:schema:dump]			
 			flash[:notice]="The field added successfully"
 		end
 	end

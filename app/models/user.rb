@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable,:omniauth_providers => [:facebook,:google_oauth2]
    belongs_to :player 
    before_save :generate_token
+    mailkick_user
 
    def generate_token
    	 self.access_token = SecureRandom.hex

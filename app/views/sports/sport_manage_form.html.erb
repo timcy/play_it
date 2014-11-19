@@ -21,7 +21,7 @@
 </table>
 <%=simple_form_for :field do |f|%>
 <%=f.input :name%>
-<%=f.input :type%>
+<%=f.input :type,as: :select,collection: ["binary","boolean","date","datetime","decimal","float","integer","primary_key","references","string","text","time","timestamp"],prompt: "Select input type"%>
 <%=f.submit%>
 
 

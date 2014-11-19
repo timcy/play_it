@@ -11,4 +11,17 @@ class HomeController < ApplicationController
 	def profile
 		@warn=params[:warning]
 	end
+
+	def send_bulk_email
+	    require 'sendgrid-ruby'
+		client = SendGrid::Client.new(api_user: 'snlkumar', api_key: 'P@ssw0rd')
+		mail = SendGrid::Mail.new
+		mail.from = 'admin@gmail.com'
+		mail.to = ['rbin@sendgrid.com', 'taco@cat.limo']
+		mail.subject = 'This is a subject string'
+		mail.text = 'WHATTUP KITTY CAT!?'
+		puts client.send(mail) 
+	end
+
+
 end

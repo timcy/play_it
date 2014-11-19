@@ -52,10 +52,10 @@ class SportsController < ApplicationController
 			require 'rake'
 			name=params[:field][:name]
 			type=params[:field][:type]
-			ActiveRecord::Migration.add_column(Sport, name, type)
+			`rails g migration add_#{name}_to_sports #{name}:#{type}`
+			`rake db:migrate`					
 			Sport.reset_column_information
 			@sport_fields=Sport.column_names
-			%x[rake db:schema:dump]			
 			flash[:notice]="The field added successfully"
 		end
 	end

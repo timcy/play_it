@@ -19,6 +19,7 @@ gem 'omniauth-linkedin'
 gem 'omniauth-twitter'
 gem 'sendgrid-ruby'
 gem 'ahoy_email'
+gem 'mailkick'
 gem 'pg'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'

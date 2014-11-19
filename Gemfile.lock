@@ -76,6 +76,7 @@ GEM
       oauth (~> 0.4)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
+    mailkick (0.1.0)
     memoizable (0.4.2)
       thread_safe (~> 0.3, >= 0.3.1)
     mime-types (2.4.3)
@@ -214,6 +215,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   linkedin
+  mailkick
   omniauth
   omniauth-facebook
   omniauth-github
