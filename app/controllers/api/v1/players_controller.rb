@@ -7,13 +7,12 @@ class Api::V1::PlayersController < Api::V1::BaseController
 	end
 
 	def create
-		puts "email is #{params[:player][:user_attributes][:email]}"
 		@player=Player.new player_params
 		@player.sports << Sport.find(params[:sports]) unless params[:sports].blank?
 		if @player.save
-			gb = Gibbon::Api.new
+			gb = Gibbon::API.new
 			list = gb.lists.list({:filters => {:list_name => "NetSolutions"}})
-			gb.lists.subscribe({:id => list["data"].first["id"], :email => {:email => params[:player][:user_attributes][:email]}, :merge_vars => {:FNAME => params[:player][:first_name, :LNAME => params[:player][:last_name]}, :double_optin => false})
+			gb.lists.subscribe({:id => list["data"].first["id"], :email => {:email => params[:player][:user_attributes][:email]}, :merge_vars => {:FNAME => params[:player][:first_name],:LNAME => params[:player][:last_name], :double_optin => false}})
 			render action: :create
 		else
 			render json:{:status=> false,:errors=>@player.errors.full_messages}
