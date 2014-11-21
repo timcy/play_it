@@ -1,8 +1,7 @@
 class Api::V1::SportsController < Api::V1::BaseController
 
 	def index
-		@sports = Sport.all
-		render json:{:status=> true,:sports=>@sports}
+		respond_with(Sport.all)
 	end
 
 	def create
