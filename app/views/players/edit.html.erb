@@ -5,6 +5,15 @@
 <%=f.text_field :last_name,:required=>true%><br/>
 <%=f.label :age%>
 <%=f.text_field :age,:required=>true%><br/>
+<%=f.fields_for :user do |u|%>
+	<%=u.fields_for :photos do |p|%>
+			<%=p.file_field :image%>
+      <%= image_tag(p.object.image.url) %>
+      <%= p.check_box :_destroy %>
+      
+	<%end%>
+<%end%>
+</br>
 <%= f.label :sports %>
 <%= select_tag("sports[]", options_for_select(@sports.collect { |ff| [ff.name, ff.id] }, @player.sports.collect { |fs| fs }),{:multiple=>true, :id => "player_sports"}) %>
 <%=f.submit "Update Player"%>

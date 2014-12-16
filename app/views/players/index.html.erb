@@ -2,22 +2,38 @@
 <%unless flash[:notice].blank?%>
 <%=flash[:notice]%>
 <%end%>
+
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Players</div>
 <%unless @players.empty?%>
-<table>
+<table class="table">
 	<tr>
 		<td>First Name</td>
 		<td>Last Name</td>
+		<td>Email</td>
 		<td>Age</td>
 		<td>sports</td>
+		<td>Image</td>
 	</tr>
 	<tbody>
 	<%@players.each do |player|%>
 	<tr>
 		<td><%=player.first_name%></td>
 		<td><%=player.last_name%></td>
+		<td><%=player.user.email%></td>
 		<td><%=player.age%></td>
 		<td><%=player.sports.map do |m| m.name end%></td>
-		<br/>
+		<%if player.user.photos.count > 0%>
+		<td>
+			<%player.user.photos.each do |photo|%>
+				<%=image_tag(photo.image,height: '32', width: '32')%>
+			<%end%></td>
+		<%else%>
+			<td></td>
+		<%end%>
+		
+		<td><%=link_to "Show", player_path(player)%></td>
 		<td><%=link_to "Edit", edit_player_path(player)%></td>
 		<td><%=link_to "Delete", player_path(player),method: :Delete%></td>
 	</tr>
@@ -27,6 +43,8 @@
 	
 </table>
 <%else%>
-<b>Still,no records available</b>
+<b>No records available</b>
 <%end%>
+</div>
+
 

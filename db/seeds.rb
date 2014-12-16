@@ -5,4 +5,5 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-User.create(email: "admin@gmail.com",password: "admin123",password_confirmation: "admin123",admin: true)
+# User.create(email: "admin@gmail.com",password: "admin123",password_confirmation: "admin123",admin: true)
+10.times { |i| Post.create(title: "Post #{50+i}", body: BetterLorem.p(5, false, false)) }

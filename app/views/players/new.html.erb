@@ -1,20 +1,26 @@
-<%=form_for(@player) do |f|%>
+<%=form_for(@player,:html=>{:multipart => true}) do |f|%>
 <%=f.label :first_name%>
-<%=f.text_field :first_name,:required=>true%><br/>
+<%=f.text_field :first_name,:required=>true,:class=>"input-group"%>
 <%=f.label :last_name%>
-<%=f.text_field :last_name,:required=>true%><br/>
+<%=f.text_field :last_name,:required=>true,:class=>"input-group"%>
 <%=f.label :age%>
-<%=f.text_field :age,:required=>true%><br/>
+<%=f.text_field :age,:required=>true,:class=>"input-group"%>
 <%=f.fields_for :user do |u|%>
 <%=u.label :email%>
-<%=u.email_field :email%>
+<%=u.email_field :email,:class=>"input-group"%>
 <%=u.label :password%>
-<%=u.password_field :password%>
+<%=u.password_field :password,:class=>"input-group"%>
 <%=u.label :password_confirmation%>
-<%=u.password_field :password_confirmation%>
+<%=u.password_field :password_confirmation,:class=>"input-group"%>
+
+<%=u.fields_for :photos do |p|%>
+	<%=p.file_field :image%>
+	<%=p.label :avatar%>
+	<%=p.check_box :avatar%>
 <%end%>
+<%end%></br>
 <%= f.label :sports %>
-<%= select_tag("sports[]", options_for_select(@sports.collect { |ff| [ff.name, ff.id] }, @player.sports.collect { |fs| fs }),{:multiple=>true, :id => "player_sports"}) %>
+<%= select_tag("sports[]", options_for_select(@sports.collect { |ff| [ff.name, ff.id] }, @player.sports.collect { |fs| fs }),{:multiple=>true, :id => "player_sports",:class=>"input-group"}) %>
 <%=f.submit "Create Player"%>
 
 <%end%>

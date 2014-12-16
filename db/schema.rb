@@ -11,46 +11,70 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141121095405) do
+ActiveRecord::Schema.define(version: 20141210071412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "ahoy_messages", force: true do |t|
-    t.string   "token"
-    t.text     "to"
-    t.integer  "user_id"
-    t.string   "user_type"
-    t.string   "mailer"
-    t.text     "subject"
-    t.text     "content"
-    t.datetime "sent_at"
-    t.datetime "opened_at"
-    t.datetime "clicked_at"
-  end
-
-  add_index "ahoy_messages", ["token"], name: "index_ahoy_messages_on_token", using: :btree
-  add_index "ahoy_messages", ["user_id", "user_type"], name: "index_ahoy_messages_on_user_id_and_user_type", using: :btree
 
   create_table "api_requests", force: true do |t|
     t.string   "request"
     t.string   "param"
     t.string   "response"
-    t.date     "in_datetime"
+    t.datetime "in_datetime"
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "identities", force: true do |t|
-    t.integer  "user_id"
-    t.string   "provider"
-    t.string   "uid"
+  create_table "oauth_access_grants", force: true do |t|
+    t.integer  "resource_owner_id", null: false
+    t.integer  "application_id",    null: false
+    t.string   "token",             null: false
+    t.integer  "expires_in",        null: false
+    t.text     "redirect_uri",      null: false
+    t.datetime "created_at",        null: false
+    t.datetime "revoked_at"
+    t.string   "scopes"
+  end
+
+  add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
+
+  create_table "oauth_access_tokens", force: true do |t|
+    t.integer  "resource_owner_id"
+    t.integer  "application_id"
+    t.string   "token",             null: false
+    t.string   "refresh_token"
+    t.integer  "expires_in"
+    t.datetime "revoked_at"
+    t.datetime "created_at",        null: false
+    t.string   "scopes"
+  end
+
+  add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, using: :btree
+  add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", using: :btree
+  add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
+
+  create_table "oauth_applications", force: true do |t|
+    t.string   "name",         null: false
+    t.string   "uid",          null: false
+    t.string   "secret",       null: false
+    t.text     "redirect_uri", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+  add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
+
+  create_table "photos", force: true do |t|
+    t.integer  "attachable_id"
+    t.string   "attachable_type"
+    t.boolean  "avatar",          default: false
+    t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "photos", ["attachable_id", "attachable_type"], name: "index_photos_on_attachable_id_and_attachable_type", using: :btree
 
   create_table "players", force: true do |t|
     t.string   "first_name"
@@ -61,12 +85,9 @@ ActiveRecord::Schema.define(version: 20141121095405) do
     t.datetime "updated_at"
   end
 
-  create_table "request_states", force: true do |t|
-    t.string   "request"
-    t.string   "param"
-    t.string   "response"
-    t.date     "in_datetime"
-    t.integer  "user_id"
+  create_table "posts", force: true do |t|
+    t.string   "title"
+    t.text     "body"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -77,6 +98,14 @@ ActiveRecord::Schema.define(version: 20141121095405) do
     t.integer  "player_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tasks", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "deleted",    default: false
+    t.integer  "user_id"
   end
 
   create_table "users", force: true do |t|
@@ -95,8 +124,7 @@ ActiveRecord::Schema.define(version: 20141121095405) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "access_token"
-    t.string   "provider"
-    t.string   "uid"
+    t.string   "avatar"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

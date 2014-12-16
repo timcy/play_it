@@ -1,0 +1,31 @@
+<div class="page-header">
+  <h1>My posts</h1>
+</div>
+ 
+<div id="my-posts">
+    <%= render(partial: 'post' ,locals: {posts: @posts})%>
+</div>
+ 
+<div id="infinite-scrolling">
+  <%= will_paginate %>
+</div>
+<style type="text/css">
+	.pagination{
+		height: 20px;
+		width: 20px;
+	}
+</style>
+
+<script type="text/javascript">
+$(function() {
+  if ($('#infinite-scrolling').size() > 0) {
+    $(window).on('scroll', function() {
+    	var more_posts_url = $('.pagination .next_page a').attr('href')
+      if (more_posts_url && $(window).scrollTop() > $(document).height() - $(window).height() - 250) {
+        $('.pagination').html('<img src="/..//assets/ajax-loader.gif" alt="Loading..." title="Loading..."  height="100" width="100"/>');
+        $.getScript(more_posts_url);
+      }
+    });
+  }
+});
+</script>

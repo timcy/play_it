@@ -1,0 +1,7 @@
+
+		<%if task.deleted%>
+			<li id = "<%=task.id%>" class="selected"><%=check_box_tag 'task',task.id,true,class: 'task_class'%><%=task.name%></li>
+		<%else%>
+			<li id = "<%=task.id%>"><%=check_box_tag 'task',task.id,false,class: 'task_class'%><%=task.name%></li>
+		<%end%>
+		

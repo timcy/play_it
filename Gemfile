@@ -9,8 +9,22 @@ gem 'execjs'
 gem 'therubyracer'
 gem 'devise'
 gem 'pg'
+gem 'sunil_custom_field'
+gem 'will_paginate', '~> 3.0.5'
+gem 'betterlorem', '~> 0.1.2'
+gem 'bootstrap-sass', '~> 3.0.3.0'
+gem 'bootstrap-will_paginate', '~> 0.0.10'
+# gem "acts_as_awesome", :path => "/home/pardeepsaini/Downloads"
+# gem 'let_rate_this', :path => "/home/pardeepsaini/workspace"
+# gem 'act_as_rate', :path => "/home/pardeepsaini/workspace"
+gem "watu_table_builder", :require => "table_builder"
+gem "carrierwave"
+gem "nested_form"
+# gem 'letsrate'
 # gibbon is used for mailchimp integration for bulk messaging
 gem 'gibbon'
+
+gem 'doorkeeper'
 # gem 'debugger2'
 gem 'certified'
 # Use SCSS for stylesheets
@@ -22,6 +36,9 @@ gem 'coffee-rails', '~> 4.0.0'
 # See https://github.com/sstephenson/execjs#readme for more supported runtimes
 # gem 'therubyracer',  platforms: :ruby
 gem 'faraday'
+gem 'rspec-rails',"~>2.14"
+gem 'capybara',"2.1.0"
+gem 'factory_girl_rails', '~> 4.2.1'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

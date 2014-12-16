@@ -2,8 +2,11 @@
 <%unless flash[:notice].blank?%>
 <%=flash[:notice]%>
 <%end%>
+<div class="panel panel-default">
+  <!-- Default panel contents -->
+  <div class="panel-heading">Players</div>
 <%unless @sports.empty?%>
-<table>
+<table class ="table">
 	<tr>
 		<td>Name</td>
 		<td>Type</td>
@@ -25,4 +28,5 @@
 <%else%>
 <b>Still,no records available</b>
 <%end%>
+</div>
 

@@ -1,11 +1,15 @@
 Rails.application.routes.draw do
 
+  use_doorkeeper
+  post '/rate' => 'rater#create', :as => 'rate'
   namespace :api do
     namespace :v1 do
       resources :players
       resources :sessions
       resources :users
       resources :sports
+      resources :tasks
+      match 'user' => 'users#show', :via=> :get
     end
   end
 
@@ -27,6 +31,14 @@ Rails.application.routes.draw do
    get 'my_sports', to: 'players#my_sports'
    resources :players
    resources :sports
+   resources :tasks do
+    collection do
+      put :update_task
+    end
+  end
+  # match '/update_tasks/:id' => 'tasks#update_tasks', :via=>:put
+
+   resources :posts
    
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

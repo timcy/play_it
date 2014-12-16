@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  request: MyString
+  param: MyString
+  response: MyString
+  in_datetime: 2014-11-21
+
+two:
+  request: MyString
+  param: MyString
+  response: MyString
+  in_datetime: 2014-11-21

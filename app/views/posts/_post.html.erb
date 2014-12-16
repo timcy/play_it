@@ -1,0 +1,12 @@
+<%posts.group_by{|p| p.created_at.to_date.strftime('%d %B %Y')}.each do |key,val|%>
+    <h2><%=key%></h2>
+    <%val.each do |post|%>
+		<div>
+		  <h2><%= link_to post.title, post_path(post) %></h2>
+		 
+		  <small><em><%= post.timestamp %></em></small>
+		 
+		  <p><%= truncate(strip_tags(post.body), length: 600) %></p>
+		</div>
+	<%end%>
+<%end%>

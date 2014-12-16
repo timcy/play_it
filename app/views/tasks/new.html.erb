@@ -1,0 +1,16 @@
+<%=form_for(@task,remote: true) do |f|%>
+	<%=f.label :Name%>
+	<%=f.text_field :name%>
+	<%=f.submit :Create%>
+<%end%>
+
+<div id ="task_list">
+	<ul id ="list_item">
+	<%unless @tasks.blank?%>
+		<%@tasks.order(:created_at).each do |task|%>
+			<%= render task%>
+		<%end%>
+	<%end%>
+	</ul>
+<div>
+

@@ -1,1 +1,57 @@
-show.html.erb
+<div id="calendar" class="tinymice">
+  <h2 id="month">
+    <%= link_to "<", :month => (@date.beginning_of_month-1).strftime("%Y-%m-01") %>
+    <%= h @date.strftime("%B %Y") %>
+    <%= link_to ">", :month => (@date.end_of_month+1).strftime("%Y-%m-01") %>
+  </h2>
+ <%= calendar_for(@tasks.order('id'),:year => @date.year, :month => @date.month ) do |t| %>
+  <%= t.head('mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun') %>
+  <%= t.day(:day_method => :created_at) do |date, tasks| %>
+    <%= date.day %>
+    <ul>
+    <% tasks.each do |task| %>
+    
+    <a href="#" class ="task" data-id=<%=task.id%>><%= task.name%></a>
+
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&amp;times;</button>
+            <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="task_name">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="save_task">Save changes</button>
+        </div>
+    </div>
+  </div>
+</div>
+    <!-- <li><a href="javascript:void(null);" class="task" data-description="<%= task.name%>"><%=task.name%></a></li> -->
+     
+    <!-- <div id="dialog-modal" title="Basic modal dialog" style="display: none;"> -->
+        
+    </div>
+      
+    <% end %>
+  </ul>
+  <% end %>
+<% end %>
+</div>
+
+<%unless @player.nil?%>
+<li><%=@player.first_name%></li>
+<li><%=@player.user.email%></li>
+<%if @player.user.photos.count > 0 %>
+  <li>
+    <%@player.user.photos.each do |photo|%>
+      <%=image_tag(photo.image,height: '32', width: '32')%>
+    <%end%>
+  </li>
+<%end%>
+<%end%>
+
+

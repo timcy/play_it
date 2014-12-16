@@ -2,20 +2,25 @@
 <html>
 <head>
   <title>Playit</title>
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
   <%= csrf_meta_tags %>
 </head>
-<body>
-<%unless current_user.nil?%>
+<body id="page-top" class="index"><%unless current_user.nil?%>
 <%if current_user.admin?%>
 <%=render "/layouts/admin_header"%>
 <%else%>
 <%=render "/layouts/player_header"%>
 <%end%>
 <%end%>
-
-<%= yield %>
-
+<section id="portfolio">
+    <div class="container">
+    	<div class="row">
+			<%= yield %>
+		</div>
+	</div>
+</section>
 </body>
 </html>

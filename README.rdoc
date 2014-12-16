@@ -16,3 +16,7 @@
 
 6. Destroy a player recored.
 	curl -X DELETE     http://localhost:3000/api/v1/players/<id>
+
+
+
+	BSMP3580450257

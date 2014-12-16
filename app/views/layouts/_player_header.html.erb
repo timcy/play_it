@@ -2,6 +2,8 @@
   <li>
   <%= link_to('My sports', my_sports_path) %>        
   </li><br/>
+  <li><%=link_to('New Tasks',new_task_path)%></li><br/>
+  <li><%=link_to('My Tasks',player_path(current_user.player))%></li><br/>
   <li>
   <%= link_to('Logout', destroy_user_session_path, :method => :delete) %>        
   </li><br/>

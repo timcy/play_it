@@ -4,7 +4,7 @@ class CreateApiRequests < ActiveRecord::Migration
       t.string :request
       t.string :param
       t.string :response
-      t.date_time :in_datetime
+      t.datetime :in_datetime
 
       t.references :user
 
